@@ -27,12 +27,11 @@
 #include "widget-tree.h"
 #include "python-hooks.h"
 #include "python-shell.h"
-#if GTK3
-#include "path-tree.h"
-#endif
-
 #include "config.h"
 
+#ifdef GTK3
+#include "path-tree.h"
+#endif
 
 static void
 on_widget_tree_selection_changed(ParasiteWidgetTree *widget_tree,
@@ -44,7 +43,7 @@ on_widget_tree_selection_changed(ParasiteWidgetTree *widget_tree,
                                      selected);
 	parasite_classtree_set_widget(PARASITE_CLASSTREE(parasite->class_tree),
 				      selected);
-#if GTK3
+#ifdef GTK3
 	parasite_pathtree_set_widget(PARASITE_PATHTREE(parasite->path_tree),
 				     selected);
 #endif
@@ -189,7 +188,7 @@ create_class_tree_pane(ParasiteWindow *parasite)
     return swin;
 }
 
-#if GTK3
+#ifdef GTK3
 
 static GtkWidget *
 create_path_tree_pane(ParasiteWindow *parasite)
@@ -221,7 +220,7 @@ on_show_graphic_updates_toggled(GtkWidget *toggle_button,
 void
 set_notebook_frameless_style(GtkWidget *notebook)
 {
-#if GTK3
+#ifdef GTK3
     GtkStyleContext *context;
     GtkCssProvider *provider;
     gchar *styling;
@@ -278,7 +277,7 @@ create_widget_tree(ParasiteWindow *parasite)
 			     create_class_tree_pane(parasite),
 			     label);
 
-#if GTK3
+#ifdef GTK3
     label = gtk_label_new("Path");
     gtk_label_set_angle(GTK_LABEL(label), angle);
     gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
