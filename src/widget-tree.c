@@ -23,6 +23,7 @@
 #include "parasite.h"
 #include "prop-list.h"
 #include "widget-tree.h"
+#include "config.h"
 
 #include <string.h>
 #if HAVE_X11
@@ -75,7 +76,7 @@ static guint widget_tree_signals[LAST_SIGNAL] = { 0 };
 static GtkWidget *
 get_column_header(GtkTreeViewColumn *column)
 {
-#if GTK3
+#ifdef GTK3
     return gtk_tree_view_column_get_button(column);
 #else
     GtkWidget *widget = gtk_tree_view_column_get_widget(column);
@@ -90,7 +91,7 @@ get_column_header(GtkTreeViewColumn *column)
 static void
 set_column_header(GtkTreeViewColumn *column, const gchar *title)
 {
-#if !GTK3
+#ifndef GTK3
     GtkWidget *label = gtk_label_new(title);
     gtk_tree_view_column_set_widget(column, label);
     gtk_widget_show(label);

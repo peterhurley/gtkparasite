@@ -23,7 +23,7 @@
 #ifndef _GTKPARASITE_H_
 #define _GTKPARASITE_H_
 
-
+#include "config.h"
 #include <gtk/gtk.h>
 
 
@@ -37,7 +37,7 @@ typedef struct
     GtkWidget *widget_tree;
     GtkWidget *prop_list;
     GtkWidget *class_tree;
-#if GTK3
+#ifdef GTK3
     GtkWidget *path_tree;
 #endif
     GtkWidget *action_list;
